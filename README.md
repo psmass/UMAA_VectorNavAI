@@ -3,7 +3,7 @@
 
 
 *** THIS DIRECTORY CONTAINS: ***
-UMAA GlobalPos/SpeedStatus Service Provider and Consumer Example using RTI's AI Connext Chatbot.
+UMAA GlobalPose/SpeedStatus Service Provider and Consumer Example using RTI's AI Connext Chatbot.
 
 AI accelerates your development and allows you to focus on the problem space, and compsci expertise (data structs, algorithms, OS mechanisms, OO Concepts) vs. language and API detail. 
 With AI, you are the Captain, AI is the copilot. It gets about 92-99% correct, leaving you to figure out whats wrong.
