@@ -5,11 +5,11 @@
 *** THIS DIRECTORY CONTAINS: ***
 UMAA GlobalPos/SpeedStatus Service Provider and Consumer Example using RTI's AI Connext Chatbot.
 
-AI accelerates your development and allows you to focus on the problem space, compsci aspects (data structs, algorithms, OS concepts, OO Concepts, vs. language detail and API detail). 
+AI accelerates your development and allows you to focus on the problem space, and compsci expertise (data structs, algorithms, OS concepts, OO Concepts) vs. language and API detail. 
 With AI, you are the Captain, AI is the copilot. It gets about 92-99% correct, leaving you to figure out whats wrong.
 
 The general approach of this example, is to use VS Code to create the XML from the block diagram (drawing). Then use RTI's System Designer to creat the code from the XML.
-System Designer provides a predictable "template" to create the code and will use XML Application creation, Dynamic Data Types, and Waitsets. Normally with a large Data model such as UMAA, using Dynamic Types is less desirable because you lose Intelisense to set nested fields. However, with AI you can now have the Connext Bot provide you the code to set these highly nested field. Advantages of Dynamic Types over Compiled types include, data samples and of all 'Dynamic Type' (I.e., not type specific) allowing non-templatized base class to be used (run time performance of Dynamic types is slightly higher, but minimal). 
+System Designer provides a predictable "template" to create the code and will use XML Application creation, Dynamic Data Types, and Waitsets. Normally with a large Data model such as UMAA, using Dynamic Types is less desirable because you lose Intelisense to set nested fields. However, with AI you can now have the Connext Bot provide you the code to set these highly nested fields. Advantages of Dynamic Types over Compiled types include, data samples and of all 'Dynamic Type' (I.e., not type specific) allowing non-templatized base class to be used (run time performance of Dynamic types is slightly higher, but minimal). 
 
 ** NOTE: Uses RTI Connext 7.5 EAR ** UMAA Distro A - 6.0 (as can be found on the AUVSI website)
 REQUIRES and RTI License to use Connext. Get a free license (and access to RTI's very extensive documentation and ConnextBot -as well as other resources), visit www.rti.com.
