@@ -11,7 +11,7 @@ With AI, you are the Captain, AI is the copilot. It gets about 92-99% correct, l
 The general approach is to use VS Code to create the XML from the block diagram (drawing). Then use RTI's System Designer to creat the code from the XML.
 System Designer provides a predictable "template" to create the code and will use XML Application creation, Dynamic Data Types, and Waitsets. Normally with a large Data model such as UMAA, using Dynamic Types is less desirable because you lose Intelisense to set nested fields. However, with AI you can now have the Connext Bot provide you the code to set these highly nested field. Advantages of Dynamic Types over Compiled types include, data samples and of all 'Dynamic Type' (I.e., not type specific) allowing non-templatized base class to be used (run time performance of Dynamic types is slightly higher, but minimal). 
 
-** NOTE: Uses RTI Connext 7.5 EAR ** 
+** NOTE: Uses RTI Connext 7.5 EAR ** UMAA Distro A - 6.0 (as can be found on the AUVSI website)
 
 The only files required are the VectorNavBlockDiagram, and the UMAA IDL in the data_model directory.
 (The drawing could be a pic of hand drawn white board drawing. Best Practice to put the topics with the arrows of Readers and Writers. Because we wanted AI to use the existing data-model vs creating its own, I was very explicit about the topic names and where they could be found. You want to @connext /IncludeWorkspace directive.
