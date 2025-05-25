@@ -5,7 +5,7 @@
 *** THIS DIRECTORY CONTAINS: ***
 UMAA GlobalPos/SpeedStatus Service Provider and Consumer Example using RTI's AI Connext Chatbot.
 
-AI accelerates you development and allows you to focus on the problem space, compsci aspects (data structs, algorithms, OS concepts, OO Concepts, vs. language detail and API detail). 
+AI accelerates your development and allows you to focus on the problem space, compsci aspects (data structs, algorithms, OS concepts, OO Concepts, vs. language detail and API detail). 
 With AI, you are the Captain, AI is the copilot. It gets about 92-99% correct, leaving you to figure out whats wrong.
 
 The general approach is to use VS Code to create the XML from the block diagram (drawing). Then use RTI's System Designer to creat the code from the XML.
