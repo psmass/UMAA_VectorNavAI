@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dds xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://community.rti.com/schema/7.5.0/rti_routing_service.xsd" version="7.5.0">
+    <!-- Data Types -->
+    <types>
+      <!-- 128-bit numeric GUID, used for unique identification -->
+      <typedef name="NumericGUID" type="byte" arrayDimensions="16"/>
+      <!-- Nanoseconds and seconds for high-precision time representation -->
+      <typedef name="DateTimeNanoseconds" type="int32" min="0" max="999999999"/>
+      <typedef name="DateTimeSeconds" type="int64" min="-9223372036854775807" max="9223372036854775807"/>
+      <!-- Two-level hierarchical identifier (entity and parent) -->
+      <struct name="IdentifierType" nested="true">
+        <member name="id" type="nonBasic" nonBasicTypeName="NumericGUID"/>
+        <member name="parentID" type="nonBasic" nonBasicTypeName="NumericGUID"/>
+      </struct>
+      <!-- High-precision date/time structure -->
+      <struct name="DateTime" nested="true">
+        <member name="seconds" type="nonBasic" nonBasicTypeName="DateTimeSeconds"/>
+        <member name="nanoseconds" type="nonBasic" nonBasicTypeName="DateTimeNanoseconds"/>
+      </struct>
+      <!-- Yaw, Roll, and Pitch angle types (radians) -->
+      <typedef name="YawAngle" type="float64" min="-6.28318530718" max="6.28318530718"/>
+      <typedef name="RollAngle" type="float64" min="-6.28318530718" max="6.28318530718"/>
+      <typedef name="PitchHalfAngle" type="float64" min="-1.5707963267948966" max="1.5707963267948966"/>
+      <!-- Covariance types for position and orientation in NED frame -->
+      <typedef name="CovarPosNED" type="float64" min="-10000" max="10000"/>
+      <typedef name="CovarOrientationNED" type="float64" min="-10000" max="10000"/>
+      <!-- Yaw, Roll, Pitch in NED coordinate system -->
+      <struct name="YawZNEDType" nested="true">
+        <member name="yaw" type="nonBasic" nonBasicTypeName="YawAngle"/>
+      </struct>
+      <struct name="RollXNEDType" nested="true">
+        <member name="roll" type="nonBasic" nonBasicTypeName="RollAngle"/>
+      </struct>
+      <struct name="PitchYNEDType" nested="true">
+        <member name="pitch" type="nonBasic" nonBasicTypeName="PitchHalfAngle"/>
+      </struct>
+      <!-- Covariance for position in NED frame -->
+      <struct name="CovariancePositionNEDType" nested="true">
+        <member name="pdPd" type="nonBasic" nonBasicTypeName="CovarPosNED" optional="true"/>
+        <member name="pePd" type="nonBasic" nonBasicTypeName="CovarPosNED" optional="true"/>
+        <member name="pePe" type="nonBasic" nonBasicTypeName="CovarPosNED"/>
+        <member name="pnPd" type="nonBasic" nonBasicTypeName="CovarPosNED" optional="true"/>
+        <member name="pnPe" type="nonBasic" nonBasicTypeName="CovarPosNED" optional="true"/>
+        <member name="pnPn" type="nonBasic" nonBasicTypeName="CovarPosNED"/>
+      </struct>
+      <!-- Covariance for orientation in NED frame -->
+      <struct name="CovarianceOrientationNEDType" nested="true">
+        <member name="rpRp" type="nonBasic" nonBasicTypeName="CovarOrientationNED"/>
+        <member name="rpRy" type="nonBasic" nonBasicTypeName="CovarOrientationNED" optional="true"/>
+        <member name="rrRp" type="nonBasic" nonBasicTypeName="CovarOrientationNED" optional="true"/>
+        <member name="rrRr" type="nonBasic" nonBasicTypeName="CovarOrientationNED"/>
+        <member name="rrRy" type="nonBasic" nonBasicTypeName="CovarOrientationNED" optional="true"/>
+        <member name="ryRy" type="nonBasic" nonBasicTypeName="CovarOrientationNED"/>
+      </struct>
+      <!-- 2D geodetic position (latitude, longitude) -->
+      <struct name="GeoPosition2D" nested="true">
+        <member name="geodeticLatitude" type="float64"/>
+        <member name="geodeticLongitude" type="float64"/>
+      </struct>
+      <!-- Navigation solution enumeration -->
+      <enum name="NavigationSolutionEnumType">
+        <enumerator name="ESTIMATED"/>
+        <enumerator name="GROUND_TRUTH"/>
+        <enumerator name="MEASURED"/>
+      </enum>
+      <!-- Distance and course types -->
+      <typedef name="DistanceBSL" type="float64" min="0" max="10000"/>
+      <typedef name="CourseTrueNorth" type="float64" min="-6.28318530718" max="6.28318530718"/>
+      <!-- 3D orientation in NED frame -->
+      <struct name="Orientation3DNEDType" nested="true">
+        <member name="pitch" type="nonBasic" nonBasicTypeName="PitchYNEDType"/>
+        <member name="roll" type="nonBasic" nonBasicTypeName="RollXNEDType"/>
+        <member name="yaw" type="nonBasic" nonBasicTypeName="YawZNEDType"/>
+      </struct>
+      <!-- Altitude and distance types -->
+      <typedef name="GeodeticAltitude" type="float64" min="-10000" max="700000"/>
+      <typedef name="DistanceASF" type="float64" min="0" max="401056000"/>
+      <typedef name="DistanceAGL" type="float64" min="0.0"/>
+      <typedef name="MSLAltitude" type="float64" min="0.0"/>
+      <!-- Global pose report (top-level type) -->
+      <struct name="GlobalPoseReportType">
+        <member name="altitude" type="nonBasic" nonBasicTypeName="MSLAltitude" optional="true"/>
+        <member name="altitudeAGL" type="nonBasic" nonBasicTypeName="DistanceAGL" optional="true"/>
+        <member name="altitudeASF" type="nonBasic" nonBasicTypeName="DistanceASF" optional="true"/>
+        <member name="altitudeGeodetic" type="nonBasic" nonBasicTypeName="GeodeticAltitude" optional="true"/>
+        <member name="attitude" type="nonBasic" nonBasicTypeName="Orientation3DNEDType"/>
+        <member name="attitudeCovariance" type="nonBasic" nonBasicTypeName="CovarianceOrientationNEDType" optional="true"/>
+        <member name="course" type="nonBasic" nonBasicTypeName="CourseTrueNorth"/>
+        <member name="depth" type="nonBasic" nonBasicTypeName="DistanceBSL" optional="true"/>
+        <member name="navigationSolution" type="nonBasic" nonBasicTypeName="NavigationSolutionEnumType"/>
+        <member name="position" type="nonBasic" nonBasicTypeName="GeoPosition2D"/>
+        <member name="positionCovariance" type="nonBasic" nonBasicTypeName="CovariancePositionNEDType" optional="true"/>
+        <member name="timeStamp" type="nonBasic" nonBasicTypeName="DateTime"/>
+        <member name="source" type="nonBasic" nonBasicTypeName="IdentifierType" key="true"/>
+      </struct>
+      <!-- Speed types -->
+      <typedef name="SpeedLocalWaterMass" type="float64" min="0" max="299792458"/>
+      <typedef name="IndicatedAirspeed" type="float64" min="0" max="299792458"/>
+      <typedef name="GroundSpeed" type="float64" min="-299792458" max="299792458"/>
+      <!-- Vehicle speed mode enumeration -->
+      <enum name="VehicleSpeedModeEnumType">
+        <enumerator name="LRC"/>
+        <enumerator name="MEC"/>
+        <enumerator name="MRC"/>
+        <enumerator name="SLOW"/>
+        <enumerator name="VEHICLE_SPECIFIC"/>
+      </enum>
+      <!-- Speed report (top-level type) -->
+      <struct name="SpeedReportType">
+        <member name="mode" type="nonBasic" nonBasicTypeName="VehicleSpeedModeEnumType" optional="true"/>
+        <member name="speedOverGround" type="nonBasic" nonBasicTypeName="GroundSpeed" optional="true"/>
+        <member name="speedThroughAir" type="nonBasic" nonBasicTypeName="IndicatedAirspeed" optional="true"/>
+        <member name="speedThroughWater" type="nonBasic" nonBasicTypeName="SpeedLocalWaterMass" optional="true"/>
+        <member name="timeStamp" type="nonBasic" nonBasicTypeName="DateTime"/>
+        <member name="source" type="nonBasic" nonBasicTypeName="IdentifierType" key="true"/>
+      </struct>
+    </types>
+
+    <!-- QoS Library: Use built-in strict reliable for writers, best-effort for readers -->
+    <qos_library name="UMAA_QoSLibrary">
+      <qos_profile name="StrictReliableProfile" base_name="BuiltinQosLib::Generic.StrictReliable">
+      </qos_profile>
+      <qos_profile name="BestEffortProfile" base_name="BuiltinQosLib::Generic.BestEffort">
+      </qos_profile>
+    </qos_library>
+
+    <!-- Domain and Topics -->
+    <domain_library name="UMAA_DomainLibrary">
+      <domain name="UMAA_Domain" domain_id="0">
+        <register_type name="GlobalPoseReportType" type_ref="GlobalPoseReportType"/>
+        <register_type name="SpeedReportType" type_ref="SpeedReportType"/>
+        <topic name="GlobalPoseStatus" register_type_ref="GlobalPoseReportType"/>
+        <topic name="SpeedStatus" register_type_ref="SpeedReportType"/>
+      </domain>
+    </domain_library>
+
+    <!-- Participants, Publishers, Subscribers, DataWriters, DataReaders -->
+    <domain_participant_library name="UMAA_DomainParticipantLibrary">
+      <!-- VectorNav Component: Writer for both topics -->
+      <domain_participant name="VectorNavParticipant" domain_ref="UMAA_DomainLibrary::UMAA_Domain">
+        <publisher name="VectorNavPublisher">
+          <data_writer name="GlobalPoseWriter" topic_ref="GlobalPoseStatus">
+            <datawriter_qos base_name="UMAA_QoSLibrary::StrictReliableProfile">
+            </datawriter_qos>
+          </data_writer>
+          <data_writer name="SpeedWriter" topic_ref="SpeedStatus">
+            <datawriter_qos base_name="UMAA_QoSLibrary::StrictReliableProfile">
+            </datawriter_qos>
+          </data_writer>
+          <publisher_qos base_name="UMAA_QoSLibrary::StrictReliableProfile">
+          </publisher_qos>
+        </publisher>
+        <domain_participant_qos base_name="UMAA_QoSLibrary::StrictReliableProfile">
+        </domain_participant_qos>
+      </domain_participant>
+      <!-- HSMST Control Component: Reader for both topics -->
+      <domain_participant name="HSMSTControlParticipant" domain_ref="UMAA_DomainLibrary::UMAA_Domain">
+        <subscriber name="HSMSTControlSubscriber">
+          <data_reader name="GlobalPoseReader" topic_ref="GlobalPoseStatus">
+            <datareader_qos base_name="UMAA_QoSLibrary::BestEffortProfile">
+            </datareader_qos>
+          </data_reader>
+          <data_reader name="SpeedReader" topic_ref="SpeedStatus">
+            <datareader_qos base_name="UMAA_QoSLibrary::BestEffortProfile">
+            </datareader_qos>
+          </data_reader>
+          <subscriber_qos base_name="UMAA_QoSLibrary::BestEffortProfile">
+          </subscriber_qos>
+        </subscriber>
+        <domain_participant_qos base_name="UMAA_QoSLibrary::BestEffortProfile">
+        </domain_participant_qos>
+      </domain_participant>
+    </domain_participant_library>
+
+</dds>

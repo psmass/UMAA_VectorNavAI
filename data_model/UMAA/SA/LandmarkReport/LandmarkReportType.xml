@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dds xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:////Applications/rti_connext_dds-7.5.0/bin/../resource/app/app_support/rtiddsgen/schema/rti_dds_profiles.xsd">
+<types>
+<include file="../../Common/IdentifierType.xml"/>
+<include file="../../Common/MaritimeEnumeration/MaritimeEnumerationSets.xml"/>
+<include file="../../Common/Measurement/GeoPosition2D.xml"/>
+<include file="../../Common/Measurement/Measurements.xml"/>
+<module name="UMAA">
+  <module name="SA">
+    <module name="LandmarkReport">
+      <const name="LandmarkReportTypeTopic" type="string" value="&quot;UMAA::SA::LandmarkReport::LandmarkReportType&quot;"/>
+      <struct name= "LandmarkReportType">
+        <member name="depth" type="nonBasic"  nonBasicTypeName= "UMAA::Common::Measurement::DistanceBSL"/>
+        <member name="landmarkType" type="nonBasic"  nonBasicTypeName= "UMAA::Common::MaritimeEnumeration::LandmarkEnumModule::LandmarkEnumType" optional="true"/>
+        <member name="location" type="nonBasic"  nonBasicTypeName= "UMAA::Common::Measurement::GeoPosition2D"/>
+        <member name="timeStamp" type="nonBasic"  nonBasicTypeName= "UMAA::Common::Measurement::DateTime"/>
+        <member name="source" type="nonBasic"  nonBasicTypeName= "UMAA::Common::IdentifierType" key="true"/>
+        <member name="landmarkID" type="nonBasic"  nonBasicTypeName= "UMAA::Common::Measurement::NumericGUID" key="true"/>
+      </struct>
+    </module>
+  </module>
+</module>
+</types>
+</dds>

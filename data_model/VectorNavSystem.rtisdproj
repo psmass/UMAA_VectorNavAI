@@ -1,0 +1,39 @@
+{
+  "ui_projectName": "VectorNavSystem",
+  "ui_chatbot_last_session": 0,
+  "ui_settings": {
+    "confirmDelete": true,
+    "enableValuetypes": false,
+    "autosave": true,
+    "enforceSnippetSeparation": true,
+    "useAsSnippetIfName": false,
+    "enableValidation": false,
+    "codegen": {
+      "directory": "/Users/pschmitt/vscodeEx/UMAA3B_VectorNav/data_model/gen",
+      "name": "HSMSTControlApp",
+      "lang": "python"
+    }
+  },
+  "ui_lastSaveTime": "24/5/2025 @ 12:32:44",
+  "ui_creationDate": "24/5/2025 @ 9:11:32",
+  "ui_creationSysDVersion": "7.5.0",
+  "ui_projectNotes": "",
+  "ui_include": [
+    {
+      "path": "BaselineRoot.documentationONLY.xml",
+      "readonly": true,
+      "builtin": true
+    },
+    {
+      "path": "BuiltinProfiles.documentationONLY.xml",
+      "readonly": true,
+      "builtin": true
+    },
+    {
+      "path": "VectorNavSystem.xml",
+      "readonly": false,
+      "builtin": false
+    }
+  ],
+  "ui_projectGUID": "e5328f9f-34fe-64a8-1db9-82baa113b476"
+}

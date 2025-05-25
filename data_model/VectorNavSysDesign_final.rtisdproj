@@ -1,0 +1,35 @@
+{
+  "ui_projectName": "VectorNavSysDesign",
+  "ui_chatbot_last_session": 0,
+  "ui_settings": {
+    "confirmDelete": true,
+    "enableValuetypes": false,
+    "autosave": true,
+    "enforceSnippetSeparation": true,
+    "useAsSnippetIfName": false,
+    "enableValidation": false,
+    "easyQosSelectedView": 10
+  },
+  "ui_lastSaveTime": "4/5/2025 @ 7:07:36",
+  "ui_creationDate": "4/5/2025 @ 6:54:05",
+  "ui_creationSysDVersion": "7.5.0",
+  "ui_projectNotes": "",
+  "ui_include": [
+    {
+      "path": "BaselineRoot.documentationONLY.xml",
+      "readonly": true,
+      "builtin": true
+    },
+    {
+      "path": "BuiltinProfiles.documentationONLY.xml",
+      "readonly": true,
+      "builtin": true
+    },
+    {
+      "path": "VectorNavSysDesign.xml",
+      "readonly": false,
+      "builtin": false
+    }
+  ],
+  "ui_projectGUID": "ae601e02-a9fd-cf06-187d-15f705b522e0"
+}

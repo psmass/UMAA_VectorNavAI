@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dds xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://community.rti.com/schema/7.5.0/rti_routing_service.xsd" version="7.5.0">
+    <types>
+      <enum name="NavigationSolutionEnumType">
+        <enumerator name="ESTIMATED"/>
+        <enumerator name="GROUND_TRUTH"/>
+        <enumerator name="MEASURED"/>
+      </enum>
+      <!-- UUID Type -->
+      <struct name="UUID" nested="true">
+        <member name="uuid" type="byte" arrayDimensions="16"/>
+      </struct>
+      <!-- Time Type -->
+      <struct name="Time_t" nested="true">
+        <member name="sec" type="int32"/>
+        <member name="nanosec" type="uint32"/>
+      </struct>
+      <!-- Type: DateTime -->
+      <typedef name="DateTimeNanoseconds" type="int32" min="0" max="999999999"/>
+      <typedef name="DateTimeSeconds" type="int64" min="-9223372036854775807" max="9223372036854775807"/>
+      <struct name="DateTime" nested="true">
+        <member name="seconds" type="nonBasic" nonBasicTypeName="DateTimeSeconds"/>
+        <member name="nanoseconds" type="nonBasic" nonBasicTypeName="DateTimeNanoseconds"/>
+      </struct>
+      <typedef name="NumericGUID" type="byte" arrayDimensions="16"/>
+      <struct name="IdentifierType" nested="true">
+        <member name="id" type="nonBasic" nonBasicTypeName="NumericGUID"/>
+        <member name="parentID" type="nonBasic" nonBasicTypeName="NumericGUID"/>
+      </struct>
+      <!-- Speed Types -->
+      <typedef name="SpeedLocalWaterMass" type="float64" min="0" max="299792458"/>
+      <typedef name="IndicatedAirspeed" type="float64" min="0" max="299792458"/>
+      <typedef name="GroundSpeed" type="float64" min="-299792458" max="299792458"/>
+      <!-- Orientation Types -->
+      <typedef name="YawAngle" type="float64" min="-6.28318530718" max="6.28318530718"/>
+      <typedef name="RollAngle" type="float64" min="-6.28318530718" max="6.28318530718"/>
+      <typedef name="PitchHalfAngle" type="float64" min="-1.5707963267948966" max="1.5707963267948966"/>
+      <struct name="YawZNEDType" nested="true">
+        <member name="yaw" type="nonBasic" nonBasicTypeName="YawAngle"/>
+      </struct>
+      <struct name="RollXNEDType" nested="true">
+        <member name="roll" type="nonBasic" nonBasicTypeName="RollAngle"/>
+      </struct>
+      <struct name="PitchYNEDType" nested="true">
+        <member name="pitch" type="nonBasic" nonBasicTypeName="PitchHalfAngle"/>
+      </struct>
+      <struct name="Orientation3DNEDType" nested="true">
+        <member name="pitch" type="nonBasic" nonBasicTypeName="PitchYNEDType"/>
+        <member name="roll" type="nonBasic" nonBasicTypeName="RollXNEDType"/>
+        <member name="yaw" type="nonBasic" nonBasicTypeName="YawZNEDType"/>
+      </struct>
+      <typedef name="MSLAltitude" type="float64" min="0.0"/>
+      <typedef name="DistanceAGL" type="float64" min="0.0"/>
+      <typedef name="DistanceASF" type="float64" min="0" max="401056000"/>
+      <typedef name="DistanceBSL" type="float64" min="0" max="10000"/>
+      <typedef name="CourseTrueNorth" type="float64" min="-6.28318530718" max="6.28318530718"/>
+      <!-- Position and Covariance Types -->
+      <typedef name="GeodeticLongitude" type="float64"/>
+      <typedef name="GeodeticLatitude" type="float64"/>
+      <typedef name="GeodeticAltitude" type="float64"/>
+      <struct name="GeoPosition2D" nested="true">
+        <member name="geodeticLatitude" type="nonBasic" nonBasicTypeName="GeodeticLatitude"/>
+        <member name="geodeticLongitude" type="nonBasic" nonBasicTypeName="GeodeticLongitude"/>
+      </struct>
+      <typedef name="CovarPosNED" type="float64" min="-10000" max="10000"/>
+      <struct name="CovariancePositionNEDType" nested="true">
+        <member name="pdPd" type="nonBasic" nonBasicTypeName="CovarPosNED" optional="true"/>
+        <member name="pePd" type="nonBasic" nonBasicTypeName="CovarPosNED" optional="true"/>
+        <member name="pePe" type="nonBasic" nonBasicTypeName="CovarPosNED"/>
+        <member name="pnPd" type="nonBasic" nonBasicTypeName="CovarPosNED" optional="true"/>
+        <member name="pnPe" type="nonBasic" nonBasicTypeName="CovarPosNED" optional="true"/>
+        <member name="pnPn" type="nonBasic" nonBasicTypeName="CovarPosNED"/>
+      </struct>
+      <typedef name="CovarOrientationNED" type="float64" min="-10000" max="10000"/>
+      <struct name="CovarianceOrientationNEDType" nested="true">
+        <member name="rpRp" type="nonBasic" nonBasicTypeName="CovarOrientationNED"/>
+        <member name="rpRy" type="nonBasic" nonBasicTypeName="CovarOrientationNED" optional="true"/>
+        <member name="rrRp" type="nonBasic" nonBasicTypeName="CovarOrientationNED" optional="true"/>
+        <member name="rrRr" type="nonBasic" nonBasicTypeName="CovarOrientationNED"/>
+        <member name="rrRy" type="nonBasic" nonBasicTypeName="CovarOrientationNED" optional="true"/>
+        <member name="ryRy" type="nonBasic" nonBasicTypeName="CovarOrientationNED"/>
+      </struct>
+      <!-- Global Pose Report -->
+      <struct name="GlobalPoseReportType">
+        <member name="altitude" type="nonBasic" nonBasicTypeName="MSLAltitude" optional="true"/>
+        <member name="altitudeAGL" type="nonBasic" nonBasicTypeName="DistanceAGL" optional="true"/>
+        <member name="altitudeASF" type="nonBasic" nonBasicTypeName="DistanceASF" optional="true"/>
+        <member name="altitudeGeodetic" type="nonBasic" nonBasicTypeName="GeodeticAltitude" optional="true"/>
+        <member name="attitude" type="nonBasic" nonBasicTypeName="Orientation3DNEDType"/>
+        <member name="attitudeCovariance" type="nonBasic" nonBasicTypeName="CovarianceOrientationNEDType" optional="true"/>
+        <member name="course" type="nonBasic" nonBasicTypeName="CourseTrueNorth"/>
+        <member name="depth" type="nonBasic" nonBasicTypeName="DistanceBSL" optional="true"/>
+        <member name="navigationSolution" type="nonBasic" nonBasicTypeName="NavigationSolutionEnumType"/>
+        <member name="position" type="nonBasic" nonBasicTypeName="GeoPosition2D"/>
+        <member name="positionCovariance" type="nonBasic" nonBasicTypeName="CovariancePositionNEDType" optional="true"/>
+        <member name="timeStamp" type="nonBasic" nonBasicTypeName="DateTime"/>
+        <member name="source" type="nonBasic" nonBasicTypeName="IdentifierType" key="true"/>
+      </struct>
+      <!-- Speed Repor t-->
+      <struct name="SpeedReportType">
+        <member name="speedOverGround" type="nonBasic" nonBasicTypeName="GroundSpeed" optional="true"/>
+        <member name="speedThroughAir" type="nonBasic" nonBasicTypeName="IndicatedAirspeed" optional="true"/>
+        <member name="speedThroughWater" type="nonBasic" nonBasicTypeName="SpeedLocalWaterMass" optional="true"/>
+        <member name="timeStamp" type="nonBasic" nonBasicTypeName="DateTime"/>
+      </struct>
+    </types>
+
+    <domain_library name="UMAA_DomainLibrary">
+      <domain name="UMAA_Domain" domain_id="0">
+        <register_type name="GlobalPoseReportType" type_ref="GlobalPoseReportType"/>
+        <register_type name="SpeedReportType" type_ref="SpeedReportType"/>
+        <topic name="GlobalPoseTopic" register_type_ref="GlobalPoseReportType"/>
+        <topic name="SpeedTopic" register_type_ref="SpeedReportType"/>
+      </domain>
+    </domain_library>
+
+    <domain_participant_library name="UMAA_DomainParticipantLibrary">
+      <domain_participant name="VectorNavParticipant" domain_ref="UMAA_DomainLibrary::UMAA_Domain">
+        <publisher name="VectorNavPublisher">
+          <data_writer name="GlobalPoseWriter" topic_ref="GlobalPoseTopic">
+            <datawriter_qos base_name="BuiltinQosLib::Generic.StrictReliable">
+            </datawriter_qos>
+          </data_writer>
+          <data_writer name="SpeedWriter" topic_ref="SpeedTopic">
+            <datawriter_qos base_name="BuiltinQosLib::Generic.StrictReliable">
+            </datawriter_qos>
+          </data_writer>
+        </publisher>
+      </domain_participant>
+      <domain_participant name="HSMSTControlParticipant" domain_ref="UMAA_DomainLibrary::UMAA_Domain">
+        <subscriber name="HSMSTControlSubscriber">
+          <data_reader name="GlobalPoseReader" topic_ref="GlobalPoseTopic">
+            <datareader_qos base_name="BuiltinQosLib::Generic.BestEffort">
+            </datareader_qos>
+          </data_reader>
+          <data_reader name="SpeedReader" topic_ref="SpeedTopic">
+            <datareader_qos base_name="BuiltinQosLib::Generic.BestEffort">
+            </datareader_qos>
+          </data_reader>
+        </subscriber>
+      </domain_participant>
+    </domain_participant_library>
+
+</dds>

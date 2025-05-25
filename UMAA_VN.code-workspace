@@ -1,0 +1,10 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"connext.connext AI URL": "wss://chatbot.rti.com"
+	}
+}

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dds xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:////Applications/rti_connext_dds-7.5.0/bin/../resource/app/app_support/rtiddsgen/schema/rti_dds_profiles.xsd">
+<types>
+<include file="../../Common/Measurement/Polygon.xml"/>
+<include file="../../MM/BaseType/PolygonAreaToleranceType.xml"/>
+<module name="UMAA">
+  <module name="MM">
+    <module name="BaseType">
+      <struct name= "PolygonAreaRequirementType" nested="true">
+        <member name="area" type="nonBasic"  nonBasicTypeName= "UMAA::Common::Measurement::Polygon"/>
+        <member name="areaTolerance" type="nonBasic"  nonBasicTypeName= "UMAA::MM::BaseType::PolygonAreaToleranceType" optional="true"/>
+      </struct>
+    </module>
+  </module>
+</module>
+</types>
+</dds>

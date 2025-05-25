@@ -1,0 +1,50 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Launch shape_type publisher",
+
+            "type": "cppdbg",
+
+            "request": "launch",
+            "program": "${workspaceFolder}/build/shape_type_publisher",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [
+                {
+
+                    "name": "DYLD_LIBRARY_PATH",
+                    "value": "/Applications/rti_connext_dds-7.5.0/lib/arm64Darwin20clang12.0:${env:DYLD_LIBRARY_PATH}"
+
+                }
+            ],
+            "externalConsole": false,
+            "MIMode": "lldb"
+        },
+        {
+            "name": "Launch shape_type subscriber",
+
+            "type": "cppdbg",
+
+            "request": "launch",
+            "program": "${workspaceFolder}/build/shape_type_subscriber",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [
+                {
+
+                    "name": "DYLD_LIBRARY_PATH",
+                    "value": "/Applications/rti_connext_dds-7.5.0/lib/arm64Darwin20clang12.0:${env:DYLD_LIBRARY_PATH}"
+
+                }
+            ],
+            "externalConsole": false,
+            "MIMode": "lldb"
+        }
+    ]
+}
