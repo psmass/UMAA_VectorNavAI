@@ -3,7 +3,13 @@
 
 
 *** THIS DIRECTORY CONTAINS: ***
-UMAA GlobalPos/SpeedStatus Service Provider and Consumer Example using RTI's AI Connext Chatbot
+UMAA GlobalPos/SpeedStatus Service Provider and Consumer Example using RTI's AI Connext Chatbot.
+
+AI accelerates you development and allows you to focus on the problem space, compsci aspects (data structs, algorithms, OS concepts, OO Concepts, vs. language detail and API detail). 
+With AI, you are the Captain, AI is the copilot. It gets about 92-99% correct, leaving you to figure out whats wrong.
+
+The general approach is to use VS Code to create the XML from the block diagram (drawing). Then use RTI's System Designer to creat the code from the XML.
+System Designer provides a predictable "template" to create the code and will use XML Application creation, Dynamic Data Types, and Waitsets. Normally with a large Data model such as UMAA, using Dynamic Types is less desirable because you lose Intelisense to set nested fields. However, with AI you can now have the Connext Bot provide you the code to set these highly nested field. Advantages of Dynamic Types over Compiled types include, data samples and of all 'Dynamic Type' (I.e., not type specific) allowing non-templatized base class to be used (run time performance of Dynamic types is slightly higher, but minimal). 
 
 ** NOTE: Uses RTI Connext 7.5 EAR ** 
 
@@ -32,6 +38,8 @@ Step6: In System Designer, Select each participant, Rightclick and select Genera
 Step7: in VS Code, ask AI to modify any business logic - e.g. @connext  in the while True loop, make the the SpeedThroughAir start from 100 incrementing by an increment of 10 to 400, and then by reversing the increment back to 100 . Have this pattern repeat indefinitely
 
 Run each Provider and Consumer application
+
+Note: In the folder py/VecNav_ex are versions of the apps created only with VS Code (Much less predictable) and more back and forth with the Connext Chatbot to get things 'right'.
 
 
 
